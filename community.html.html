@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arqwell Community | Forum & Live Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+    }
+    body {
+      padding-top: 72px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <!-- Header -->
+  <header class="border-b bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 shadow-sm">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <a href="index.html#home" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full border border-slate-900 flex items-center justify-center text-xs font-semibold tracking-wide">
+          ARQ
+        </div>
+        <span class="font-semibold tracking-wide text-slate-800">Arqwell</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="index.html#resources" class="hover:text-slate-500">Resources</a>
+        <a href="index.html#software" class="hover:text-slate-500">Software</a>
+        <a href="community.html" class="hover:text-slate-900 font-semibold">Community</a>
+        <a href="index.html#contact" class="hover:text-slate-500">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / Intro -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-[1.1fr,0.9fr] gap-8 items-start">
+      <div>
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-slate-500 mb-3">
+          Arqwell Community
+        </p>
+        <h1 class="text-2xl md:text-3xl font-semibold leading-tight mb-3">
+          A shared space for AI, architecture, and scripts in progress.
+        </h1>
+        <p class="text-sm md:text-base text-slate-700 mb-4 max-w-xl">
+          Use this forum to ask questions about Dynamo, Rhino, and Grasshopper,
+          share tools you’ve built with the Arqwell Assistant, and see how others
+          are using AI in their day-to-day projects.
+        </p>
+        <ul class="text-sm text-slate-800 space-y-1.5 mb-4">
+          <li>• Ask specific “how do I…” questions about scripts and workflows</li>
+          <li>• Share screenshots, lessons learned, and Blue Tape-style process notes</li>
+          <li>• Help shape future Arqwell tools and training topics</li>
+        </ul>
+        <p class="text-xs text-slate-500">
+          Tip: Use Discord for real-time chat. Use this page and Google Forms to
+          submit questions that should be answered or archived later.
+        </p>
+      </div>
+
+      <!-- Quick links / Tags -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-5 text-xs text-slate-800 space-y-3">
+        <p class="font-semibold text-slate-700 text-sm mb-1">Common topics</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded-full bg-slate-900 text-white">Dynamo help</span>
+          <span class="px-2 py-1 rounded-full border border-slate-200">Rhino Python</span>
+          <span class="px-2 py-1 rounded-full border border-slate-200">Grasshopper logic</span>
+          <span class="px-2 py-1 rounded-full border border-slate-200">Model QA</span>
+          <span class="px-2 py-1 rounded-full border border-slate-200">Prompt examples</span>
+        </div>
+        <p class="text-[0.7rem] text-slate-500">
+          When you post a question, mention which tool you’re using and which version
+          of Revit or Rhino you’re on if it’s relevant.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discord Embed + Featured Q&A -->
+  <section class="py-10 bg-white border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-[1.1fr,0.9fr] gap-8 items-start">
+      <!-- Discord Embed -->
+      <div class="space-y-3">
+        <h2 class="text-lg font-semibold text-slate-800 mb-1">Live chat on Discord</h2>
+        <p class="text-sm text-slate-700 mb-3 max-w-xl">
+          Join the Arqwell Discord server for live discussion, office hours-style help,
+          and informal chat about scripts and workflows. You’ll see channels for Dynamo,
+          Rhino, Grasshopper, and general AI questions.
+        </p>
+
+        <div class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-900">
+          <!-- Replace YOUR_SERVER_ID with your Discord server ID -->
+          <iframe
+            src="https://discord.com/widget?id=YOUR_DISCORD_SERVER_ID&theme=dark"
+            width="100%"
+            height="400"
+            allowtransparency="true"
+            frameborder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+          </iframe>
+        </div>
+
+        <p class="text-[0.7rem] text-slate-500">
+          To enable this widget, turn on the “Server Widget” option in your Discord server
+          settings, then replace <code>YOUR_DISCORD_SERVER_ID</code> with your actual server ID.
+        </p>
+      </div>
+
+      <!-- Featured Questions / Q&A -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold text-slate-800">Featured questions & answers</h3>
+        <p class="text-xs text-slate-700">
+          A few curated questions from the community. You can update these manually or, later on,
+          connect them to a database or form responses.
+        </p>
+
+        <div class="space-y-3 text-xs">
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3">
+            <p class="font-semibold text-slate-800 mb-1">
+              How can I safely use AI-generated Dynamo scripts in production?
+            </p>
+            <p class="text-slate-700 mb-1">
+              Start by testing scripts in a copy of your model. Use Arqwell’s prompts to request:
+              “Explain what this script does line by line.” Keep a small library of checked scripts
+              and avoid running anything that touches large sets of elements without filters.
+            </p>
+            <p class="text-[0.7rem] text-slate-500">
+              Tags: Dynamo · QA · Best practices
+            </p>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3">
+            <p class="font-semibold text-slate-800 mb-1">
+              Can Arqwell help me generate Rhino scripts for structure layouts?
+            </p>
+            <p class="text-slate-700 mb-1">
+              Yes. Ask the assistant to place structural elements along a curve, then refine spacing,
+              member type, and grouping. Always review the code and step through with simple geometry first.
+            </p>
+            <p class="text-[0.7rem] text-slate-500">
+              Tags: Rhino · Structure · Python
+            </p>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3">
+            <p class="font-semibold text-slate-800 mb-1">
+              How do we build a model QA checklist using AI?
+            </p>
+            <p class="text-slate-700 mb-1">
+              Use Arqwell to draft a checklist for views, sheets, warnings, and naming conventions.
+              Turn those into prompts and small scripts that check each item. Save your favorite
+              prompts so the QA process is repeatable.
+            </p>
+            <p class="text-[0.7rem] text-slate-500">
+              Tags: QA · Revit · Prompts
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ask a Question / Comments (Google Form) -->
+  <section class="py-12 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 space-y-4">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <h2 class="text-lg font-semibold text-slate-800 mb-1">Ask a question or leave a comment</h2>
+          <p class="text-sm text-slate-700 max-w-xl">
+            Use the form below to send a question directly to the Arqwell team. We’ll
+            reply by email and may also turn common questions into public Q&A entries
+            on this page (removing any private information).
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-2xl p-4 md:p-5">
+        <!-- Replace YOUR_GOOGLE_COMMUNITY_FORM_ID with your form ID -->
+        <iframe
+          src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_COMMUNITY_FORM_ID/viewform?embedded=true"
+          title="Arqwell Community Question Form"
+          class="w-full h-[480px] border-0 rounded-xl">
+        </iframe>
+      </div>
+
+      <p class="text-[0.7rem] text-slate-500">
+        After you submit, you’ll receive an automated confirmation letting you know
+        we’ve received your message. We review community questions regularly and
+        respond as soon as we can.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-slate-200 bg-slate-900 text-white mt-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+      <div class="flex flex-col items-center md:items-start">
+        <p class="text-slate-300">© 2025 Arqwell. Built for architects, by architects.</p>
+        <a href="https://docs.google.com/forms/d/e/YOUR_GOOGLE_CHATBOT_FORM_ID/viewform?embedded=true"
+           target="_blank"
+           class="text-emerald-400 hover:text-emerald-300 text-xs mt-1">
+          Chat with the Arqwell Bot
+        </a>
+      </div>
+      <div class="flex gap-4 text-slate-300">
+        <a href="#" class="hover:text-white">GitHub</a>
+        <a href="#" class="hover:text-white">LinkedIn</a>
+        <a href="#" class="hover:text-white">Instagram</a>
+        <a href="#" class="hover:text-white">Twitter</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
