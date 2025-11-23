@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI & CAD Drafting — Peer‑Reviewed List Popup</title>
+<style>
+  :root{
+    --bg:#f8fafc; --panel:#ffffff; --ink:#0f172a; --muted:#475569;
+    --accent:#0ea5a4; --accent-strong:#0f766e; --ring:rgba(14,165,164,0.12);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg); color:var(--ink); min-height:100vh; display:grid; place-items:center; padding:28px;
+  }
+  .demo-wrap{width:min(980px,100%); text-align:center}
+  h1{font-weight:700; margin:0 0 8px; font-size:clamp(20px,3vw,28px); color:var(--ink)}
+  p.lede{margin:0 auto 18px; max-width:70ch; color:var(--muted)}
+
+  /* Trigger button (match Arqwell header buttons) */
+  .btn{appearance:none; border:1px solid rgba(15,23,42,0.06); background:var(--accent-strong); color:white; font-weight:600; padding:10px 14px; border-radius:10px; cursor:pointer}
+  .btn:hover{opacity:0.95}
+
+  /* Modal shell */
+  .modal-backdrop{position:fixed; inset:0; background:rgba(2,6,23,0.45); display:none; align-items:center; justify-content:center; padding:22px; z-index:50}
+  .modal-backdrop.open{display:flex}
+
+  .modal{width:min(920px,100%); background:var(--panel); border:1px solid #e6eef0; border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(2,6,23,0.12)}
+
+  .modal-header{display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid #eef2f6}
+  .modal-title{display:flex; gap:10px; align-items:center; font-weight:700; color:var(--ink)}
+  .pill{font-size:12px; font-weight:700; color:white; background:var(--accent-strong); padding:6px 10px; border-radius:999px}
+  .close{appearance:none; border:0; background:transparent; color:var(--muted); font-size:20px; line-height:1; cursor:pointer; padding:6px 8px}
+
+  .modal-body{padding:16px; max-height:min(72vh,720px); overflow:auto}
+
+  .controls{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px}
+  .chip{background:white; border:1px solid #e6eef0; color:var(--muted); font-size:13px; padding:6px 10px; border-radius:999px; cursor:pointer}
+  .chip.active{background:var(--accent); color:white; border-color:var(--accent)}
+
+  /* Animated list */
+  ol.bib{counter-reset:item; display:grid; gap:12px; padding-left:0; margin:0}
+  .bib-item{list-style:none; background:#fbfeff; border:1px solid #eef2f6; padding:14px 16px 14px 56px; border-radius:10px; position:relative; overflow:hidden; transform:translateY(6px); opacity:0; animation:staggerIn .35s ease forwards}
+  @keyframes staggerIn{to{transform:translateY(0); opacity:1}}
+  .bib-item::before{counter-increment:item; content:counter(item); position:absolute; left:12px; top:12px; width:34px; height:34px; display:grid; place-items:center; font-weight:700; color:white; background:var(--accent-strong); border-radius:8px}
+  .bib-item h3{margin:0 0 6px; font-size:15px; font-weight:700}
+  .bib-item .meta{font-size:13px; color:var(--muted)}
+  .bib-item .tags{margin-top:8px; display:flex; flex-wrap:wrap; gap:8px}
+  .tag{font-size:12px; padding:4px 8px; border-radius:999px; background:#f1f5f9; border:1px solid #e2e8f0; color:var(--muted)}
+  .bib-item .note{margin-top:8px; font-size:13px; color:var(--ink)}
+  .bib-item .links{margin-top:10px}
+  .bib-item .links a{margin-right:10px; font-size:13px; color:var(--accent-strong); text-decoration:underline}
+
+  @media (prefers-reduced-motion: reduce){.modal, .modal-backdrop.open, .bib-item{animation:none; opacity:1; transform:none}}
+</style>
+</head>
+<body>
+  <div class="demo-wrap">
+    <h1>AI & the Future of CAD Drafting</h1>
+    <p class="lede">Click the button to preview a pop‑up bibliography you can embed on your site. The list animates in and can be filtered by topic.</p>
+    <button class="btn" id="openModal">Open peer‑reviewed list</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="backdrop" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="modal-header">
+        <div class="modal-title" id="modalTitle">
+          <span class="pill">Peer‑Reviewed</span>
+          <span>AI + CAD Drafting / Vectorization / Generative CAD</span>
+        </div>
+        <button class="close" id="closeModal" aria-label="Close">×</button>
+      </header>
+
+      <div class="modal-body">
+        <div class="controls" id="filters">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="vectorization">2D Vectorization</button>
+          <button class="chip" data-filter="sketch2cad">Sketch → CAD</button>
+          <button class="chip" data-filter="generative">Generative / Diffusion CAD</button>
+          <button class="chip" data-filter="llm">LLM / Copilots</button>
+          <button class="chip" data-filter="survey">Surveys & Reviews</button>
+        </div>
+
+        <ol class="bib" id="bibList">
+          <li class="bib-item" data-tags="survey">
+            <h3>Steininger, S., Zhao, J., & Fottner, J. (2025).</h3>
+            <div class="meta">“Enhancing computer‑aided design with deep learning frameworks: a literature review.” <em>Proceedings of the Design Society (ICED 2025).</em></div>
+            <div class="tags"><span class="tag">Survey</span><span class="tag">Deep Learning</span><span class="tag">CAD</span></div>
+            <div class="note">Maps ML/GenAI methods entering CAD and highlights automation gaps in drafting.</div>
+          </li>
+
+          <li class="bib-item" data-tags="generative">
+            <h3>Wang, H., et al. (2024).</h3>
+            <div class="meta">“VQ‑CAD: Computer‑Aided Design model generation with vector‑quantized diffusion.” <em>Computer‑Aided Design.</em></div>
+            <div class="tags"><span class="tag">Diffusion</span><span class="tag">Parametric CAD</span></div>
+            <div class="note">Shows how diffusion models can generate parametric CAD sequences—future auto‑drafting backbone.</div>
+          </li>
+
+          <li class="bib-item" data-tags="generative">
+            <h3>Zhou, S., et al. (2024).</h3>
+            <div class="meta">“CADGen: Computer‑aided design sequence construction with deep learning.” <em>IET Digital Graphic Technology.</em></div>
+            <div class="tags"><span class="tag">Sequence Learning</span><span class="tag">Feature History</span></div>
+            <div class="note">Learns sketch/extrude histories that mirror real drafting/modeling steps.</div>
+          </li>
+
+          <li class="bib-item" data-tags="sketch2cad">
+            <h3>Li, P., et al. (2025).</h3>
+            <div class="meta">“Revisiting CAD Model Generation by Learning Raster Sketch (RECAD).” <em>AAAI Conference on Artificial Intelligence.</em></div>
+            <div class="tags"><span class="tag">Sketch → CAD</span><span class="tag">Raster Inputs</span></div>
+            <div class="note">Converts raster drawings into CAD solids; supports future plan‑to‑model automation.</div>
+          </li>
+
+          <li class="bib-item" data-tags="generative">
+            <h3>Fan, R., et al. (2025).</h3>
+            <div class="meta">“A history‑based parametric CAD sketch dataset …” <em>Computer‑Aided Design.</em></div>
+            <div class="tags"><span class="tag">Dataset</span><span class="tag">Parametric Sketching</span></div>
+            <div class="note">Provides training data for AI systems that understand drafting intent.</div>
+          </li>
+
+          <li class="bib-item" data-tags="vectorization">
+            <h3>Betsas, T., et al. (2024).</h3>
+            <div class="meta">“INCAD: 2D vector drawings creation using instance segmentation.” <em>ISPRS Archives (peer‑reviewed proceedings).</em></div>
+            <div class="tags"><span class="tag">2D Vectorization</span><span class="tag">Segmentation</span></div>
+            <div class="note">Instance‑segmentation approach to produce clean vectors from drawings.</div>
+          </li>
+
+          <li class="bib-item" data-tags="vectorization">
+            <h3>Egiazarian, V., et al. (2020).</h3>
+            <div class="meta">“Deep Vectorization of Technical Drawings.” <em>ECCV 2020 Proceedings.</em></div>
+            <div class="tags"><span class="tag">Line Cleanup</span><span class="tag">Legacy Plans</span></div>
+            <div class="note">Foundational deep‑learning method for extracting crisp vectors from noisy scans.</div>
+          </li>
+
+          <li class="bib-item" data-tags="vectorization">
+            <h3>Mafipour, M. S., et al. (2023).</h3>
+            <div class="meta">“Digitalization of 2D Bridge Drawings Using Deep Learning Models …” <em>Peer‑reviewed engineering venue.</em></div>
+            <div class="tags"><span class="tag">Legacy CAD</span><span class="tag">2D → Parametric</span></div>
+            <div class="note">A real pipeline for converting old technical sheets into editable CAD.</div>
+          </li>
+
+          <li class="bib-item" data-tags="generative">
+            <h3>Villena‑Toro, J., et al. (2022).</h3>
+            <div class="meta">“Automated and Customized CAD Drawings by Utilizing …” <em>ASME IDETC‑CIE Proceedings.</em></div>
+            <div class="tags"><span class="tag">Automation</span><span class="tag">Customization</span></div>
+            <div class="note">Shows ML‑assisted automation inside CAD drafting deliverables.</div>
+          </li>
+
+          <li class="bib-item" data-tags="llm">
+            <h3>Daareyni, A., et al. (2025).</h3>
+            <div class="meta">“Generative AI meets CAD: enhancing engineering design …” <em>International Journal of Advanced Manufacturing Technology.</em></div>
+            <div class="tags"><span class="tag">LLM Copilot</span><span class="tag">Text‑to‑CAD</span></div>
+            <div class="note">Natural‑language CAD editing framework—preview of conversational drafting.</div>
+          </li>
+
+          <li class="bib-item" data-tags="llm generative">
+            <h3>Li, K. Y., et al. (2025).</h3>
+            <div class="meta">“Generative AI and CAD automation for diverse and novel design …” <em>SN Applied Sciences.</em></div>
+            <div class="tags"><span class="tag">Generative CAD</span><span class="tag">Automation</span></div>
+            <div class="note">Combines GenAI with CAD automation—useful for forecasting drafting throughput changes.</div>
+          </li>
+
+          <li class="bib-item" data-tags="generative">
+            <h3>Li, Q., et al. (2025).</h3>
+            <div class="meta">“Intelligent Generation and Reinforcement Learning …” <em>Computer‑Aided Design (Special Issue).</em></div>
+            <div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">CAD Histories</span></div>
+            <div class="note">RL agents learn drafting/modeling policies to produce valid CAD sequences.</div>
+          </li>
+
+          <li class="bib-item" data-tags="survey">
+            <h3>Lin, R., et al. (2025).</h3>
+            <div class="meta">“A Survey on Deep Learning in 3D CAD Reconstruction.” <em>Applied Sciences.</em></div>
+            <div class="tags"><span class="tag">Survey</span><span class="tag">3D Reconstruction</span></div>
+            <div class="note">Comprehensive survey of reconstruction methods that feed auto‑drafting from images/scans.</div>
+          </li>
+
+          <li class="bib-item" data-tags="survey">
+            <h3>Peckham, O., et al. (2025).</h3>
+            <div class="meta">“Artificial Intelligence in Generative Design: A Structured Review.” <em>Designs.</em></div>
+            <div class="tags"><span class="tag">Survey</span><span class="tag">Generative Design</span></div>
+            <div class="note">Structured review with strong implications for CAD automation and drafting roles.</div>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+<script>
+  const openBtn = document.getElementById('openModal');
+  const closeBtn = document.getElementById('closeModal');
+  const backdrop = document.getElementById('backdrop');
+  const filters = document.getElementById('filters');
+  const list = document.getElementById('bibList');
+
+  const items = [...list.querySelectorAll('.bib-item')];
+
+  function openModal(){
+    backdrop.classList.add('open');
+    backdrop.setAttribute('aria-hidden','false');
+    // restart item animations
+    items.forEach((li,i)=>{
+      li.style.animationDelay = (i*60)+'ms';
+    });
+  }
+  function closeModal(){
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden','true');
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) closeModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+
+  filters.addEventListener('click', (e)=>{
+    const chip = e.target.closest('.chip');
+    if(!chip) return;
+    filters.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    const f = chip.dataset.filter;
+
+    let visibleIndex = 0;
+    items.forEach(li=>{
+      const tags = (li.dataset.tags || '').split(/\s+/);
+      const show = (f==='all') || tags.includes(f);
+      li.style.display = show ? 'block' : 'none';
+      if(show){
+        li.style.animation = 'none';
+        // force reflow so animation restarts
+        void li.offsetWidth;
+        li.style.animation = 'staggerIn .45s ease forwards';
+        li.style.animationDelay = (visibleIndex*60)+'ms';
+        visibleIndex++;
+      }
+    });
+  });
+
+  // If the page is embedded as a preview (iframe) with ?embedded=1, auto-open the modal
+  try {
+    const params = new URLSearchParams(window.location.search || window.location.hash.replace(/^#/, '?'));
+    if (params.get('embedded') === '1') {
+      // Wait a tick for layout before opening so animations run correctly
+      window.addEventListener('load', function(){ openModal(); });
+    }
+  } catch (err) {
+    // ignore URL parse errors in odd environments
+    console.warn('research_popup: embedded param check failed', err);
+  }
+</script>
+</body>
+</html>

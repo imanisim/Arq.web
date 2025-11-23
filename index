@@ -1,6 +1,7 @@
-<!-- Preview: Community page for Arqwell Forum -->
- <a href="community.html"
-   class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800">
+ <!-- Preview: Community page for Arqwell Forum (hidden) -->
+  <a href="community.html"
+   class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800"
+   style="display:none;" aria-hidden="true">
   Visit the Arqwell Forum
 </a>
 
@@ -38,9 +39,7 @@
       <nav class="hidden md:flex gap-6 text-sm">
         <a href="#about" class="hover:text-slate-500">About</a>
         <a href="#resources" class="hover:text-slate-500">Resources</a>
-        <a href="#software" class="hover:text-slate-500">Software</a>
-        <button id="training-link" class="hover:text-slate-500">Training</button>
-        <a href="#community" class="hover:text-slate-500">Community</a>
+        <a href="#capabilities" class="hover:text-slate-500">Capabilities</a>
         <a href="#contact" class="hover:text-slate-500">Contact</a>
       </nav>
     </div>
@@ -63,7 +62,7 @@
         <p class="text-sm md:text-base text-slate-700 mb-6 max-w-lg">Arqwell helps architects learn practical AI, use plug-ins generated with AI, and connect Rhino and Revit to a chat that writes Dynamo and Python scripts directly inside their projects.</p>
         <div class="flex flex-wrap gap-3">
           <a href="#resources" class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800">Explore Resources</a>
-          <a href="#software" class="px-4 py-2.5 text-sm rounded-full border border-slate-300 text-slate-800 hover:bg-white">Download Plug-ins</a>
+
         </div>
       </div>
       <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
@@ -94,9 +93,9 @@
       <div class="flex items-center justify-between gap-4">
         <div>
           <p class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-500 mb-1">Featured Work</p>
-          <h2 class="text-sm md:text-base font-semibold text-slate-800">Examples of projects supported by Arqwell tools</h2>
+          <h2 class="text-sm md:text-base font-semibold text-slate-800">Architectural Automation & Computational Design Developer</h2>
           <p class="text-xs md:text-sm text-slate-700 max-w-xl mt-1">
-            Use this space to show a test fit, microcity study, or diagram created with Arqwell-assisted scripts in Rhino, Revit, or Grasshopper.
+            Use this space to show an Arqwell script result or concept study — a test fit, microcity study, or diagram produced with Arqwell-assisted workflows in Rhino, Revit, or Grasshopper.
           </p>
         </div>
         <!-- Simple tag strip -->
@@ -107,25 +106,31 @@
         </div>
       </div>
 
-      <!-- Image Placeholder -->
-      <div class="border border-dashed border-slate-300 rounded-2xl bg-slate-100/60 overflow-hidden flex flex-col md:flex-row items-stretch gap-0">
-        <div class="flex-1 min-h-[220px] md:min-h-[260px] flex items-center justify-center bg-slate-200/60">
-          <!-- Replace this div with an <img> when you have final artwork -->
-          <span class="text-[0.7rem] md:text-xs text-slate-600 text-center px-4">
-            Featured image area – drop in a plan, axonometric, or diagram exported from Revit or Rhino. Recommended ratio ~16:9.
-          </span>
+      <!-- Image Placeholder: remove outer borders/margins so image appears full-bleed -->
+      <div class="overflow-hidden flex flex-col md:flex-row items-stretch gap-0">
+        <!-- LEFT: large iframe that fills most of the viewport height with no borders -->
+        <div class="flex-1 min-h-[220px] md:min-h-[260px] flex items-center justify-center" style="align-items:stretch;">
+          <!-- Make iframe take the full available viewport height under the fixed header -->
+          <div style="width:100%; height:calc(100vh - 72px); display:flex; align-items:center; justify-content:center;">
+            <iframe id="featuredIframe" src="featured_animation.html" title="Featured — Arqwell script / concept study" loading="lazy"
+              style="border:0; margin:0; width:100%; height:100%; display:block;"
+              sandbox="allow-scripts allow-same-origin allow-popups">
+            </iframe>
+          </div>
         </div>
-        <div class="md:max-w-xs w-full border-t md:border-t-0 md:border-l border-slate-200 bg-white p-4 flex flex-col justify-between text-[0.75rem] md:text-xs text-slate-700">
-          <div class="space-y-1.5">
-            <p class="font-semibold text-slate-800">Sample caption</p>
-            <p>
-              Test fit for a mixed-use block generated with Arqwell-assisted Dynamo and Rhino scripts. Layout, grids, and documentation flows are supported by AI, with final decisions made by the design team.
+
+        <!-- RIGHT: caption / description for Arqwell script (clickable to open modal) -->
+        <div class="md:max-w-xs w-full md:w-[320px] bg-white p-6 flex flex-col justify-between text-[0.9rem] md:text-sm text-slate-700">
+          <div class="space-y-2">
+            <p id="featuredTitle" class="font-semibold text-slate-800">Arqwell script / concept study</p>
+            <p id="featuredCaption">
+              Arqwell provides custom Rhino Python development for architects, designers, and studios seeking speed, precision, and automation. From automated test-fits to diagram generators and microcity modeling tools, we build tailored scripts that turn your design logic into intelligent, repeatable workflows.
             </p>
           </div>
-          <div class="mt-3 flex flex-wrap gap-2 text-[0.7rem]">
-            <span class="px-2 py-1 rounded-full bg-slate-900 text-white">Concept study</span>
-            <span class="px-2 py-1 rounded-full border border-slate-200">Lighting + layouts</span>
-            <span class="px-2 py-1 rounded-full border border-slate-200">Arqwell scripts</span>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <button id="openFeaturedModal" class="px-3 py-2 rounded-full bg-slate-900 text-white">Contact Us</button>
+
+            <span class="px-2 py-1 rounded-full border border-slate-200">Arqwell script</span>
           </div>
         </div>
       </div>
@@ -134,9 +139,23 @@
 
   <!-- ABOUT -->
   <section id="about" class="py-12 border-t border-slate-200 bg-white">
+    <!-- Hero with background image (uses the provided image in /img) -->
+    <div class="max-w-6xl mx-auto px-4 mb-6">
+      <div class="rounded-2xl overflow-hidden relative h-44">
+        <img src="img/Untitled design (12).png" alt="Arqwell hero" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-slate-900/40"></div>
+        <div class="relative z-10 p-6 flex items-center justify-between h-full">
+          <div>
+            <h2 class="text-2xl font-semibold text-white">About Arqwell</h2>
+            <p class="text-sm text-white/90 mt-1">Practical AI tools, training, and workflows for architects.</p>
+          </div>
+          <a href="#capabilities" class="inline-block bg-white text-slate-900 px-4 py-2 rounded-full text-sm">See Capabilities</a>
+        </div>
+      </div>
+    </div>
+
     <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-[1.1fr,0.9fr] gap-10">
       <div>
-        <h2 class="text-xl font-semibold mb-3">About Arqwell</h2>
         <p class="text-sm text-slate-700 mb-3">Arqwell is a resource hub for architects who want to use artificial intelligence in real projects. We focus on training, tools, and workflows instead of hype.</p>
         <p class="text-sm text-slate-700 mb-3">Our tools connect AI to Rhino, Revit, and Dynamo so you can ask questions in plain language and receive ready to test scripts and workflows. You remain the designer. AI is your technical assistant.</p>
         <p class="text-sm text-slate-700">We support working and emerging professionals in the AEC field who need reliable methods, documentation, and repeatable processes.</p>
@@ -163,113 +182,32 @@
         </div>
       </div>
 
-      <!-- Design + Script Assets -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm mb-10">
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Rhino + Revit</p>
-          <h3 class="text-sm font-semibold mb-2">Parametric Furniture Set</h3>
-          <p class="text-xs text-slate-700 mb-3">A small collection of beds, desks, and seating families created with AI assisted scripts, designed to be lightweight and easy to schedule in concept and schematic models.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Rhino source geometry + Revit family versions</li>
-            <li>Consistent naming and type parameters</li>
-            <li>Ready for room layout studies</li>
-          </ul>
-          <div class="mt-auto flex items-center justify-between gap-2">
-            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 text-white px-3 py-1 text-[0.7rem]">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Generated with Arqwell Assistant
-            </span>
-            <a href="#" class="js-view-download text-[0.7rem] underline underline-offset-2 text-slate-700" data-file="/downloads/demo.zip" data-gif="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" data-price="9.99">View / download</a>
+      <!-- Design + Script Assets (single featured item) -->
+      <div class="mb-10">
+        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col md:flex-row items-stretch">
+          <!-- Left: image (uses provided bed code.jpg) -->
+          <div class="flex-1 bg-black" style="min-height:260px; display:flex; align-items:center; justify-content:center;">
+            <img src="img/bed%20code.jpg" alt="Parametric Furniture Set" style="width:100%; height:100%; object-fit:cover; display:block;" />
           </div>
-        </div>
-
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Revit</p>
-          <h3 class="text-sm font-semibold mb-2">Project Template – Microcity Mixed Use</h3>
-          <p class="text-xs text-slate-700 mb-3">A Revit template file with basic views, sheets, and filters set up for dense mixed use and microcity style projects, built while testing Arqwell driven workflows.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Prebuilt views and sheet set</li>
-            <li>Visual filters for QA and design review</li>
-            <li>Example schedules and legends</li>
-          </ul>
-          <div class="mt-auto flex items-center justify-between gap-2">
-            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 text-white px-3 py-1 text-[0.7rem]">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Generated with Arqwell Assistant
-            </span>
-            <a href="#" class="js-view-download text-[0.7rem] underline underline-offset-2 text-slate-700" data-file="/downloads/demo.zip" data-gif="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" data-price="9.99">View / download</a>
-          </div>
-        </div>
-
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Dynamo + Python</p>
-          <h3 class="text-sm font-semibold mb-2">Automation Starter Pack</h3>
-          <p class="text-xs text-slate-700 mb-3">A small set of Dynamo graphs and companion Python snippets created through chat prompts, focused on sheet setup, view cleanup, and model audit tasks.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Rename and organize sheets by project code</li>
-            <li>Scan models for missing views or warnings</li>
-            <li>Export quick reports to Excel</li>
-          </ul>
-          <div class="mt-auto flex items-center justify-between gap-2">
-            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 text-white px-3 py-1 text-[0.7rem]">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Generated with Arqwell Assistant
-            </span>
-            <a href="#" class="js-view-download text-[0.7rem] underline underline-offset-2 text-slate-700" data-file="/downloads/demo.zip" data-gif="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" data-price="9.99">View / download</a>
-          </div>
-        </div>
-
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Detail Library</p>
-          <h3 class="text-sm font-semibold mb-2">Wall, Roof, and Façade Details</h3>
-          <p class="text-xs text-slate-700 mb-3">A growing library of detail and drafting views created while exploring AI assisted research into envelopes, ETFE, and resilient construction.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Layered wall and roof assemblies</li>
-            <li>Notes and tags aligned with templates</li>
-            <li>Space to attach manufacturer references</li>
-          </ul>
-          <div class="mt-auto flex items-center justify-between gap-2">
-            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 text-white px-3 py-1 text-[0.7rem]">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Generated with Arqwell Assistant
-            </span>
-            <a href="#" class="js-view-download text-[0.7rem] underline underline-offset-2 text-slate-700" data-file="/downloads/demo.zip" data-gif="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" data-price="9.99">View / download</a>
-          </div>
-        </div>
-
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Rhino / Grasshopper</p>
-          <h3 class="text-sm font-semibold mb-2">Concept Massing & Grids</h3>
-          <p class="text-xs text-slate-700 mb-3">Grasshopper definitions and Rhino scripts that generate block and tower massing, circulation grids, and test layouts for microcity concepts.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Configurable grid and block sizes</li>
-            <li>Simple sliders for testing scenarios</li>
-            <li>Works as a starting point for study models</li>
-          </ul>
-          <div class="mt-auto flex items-center justify-between gap-2">
-            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 text-white px-3 py-1 text-[0.7rem]">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Generated with Arqwell Assistant
-            </span>
-            <a href="#" class="js-view-download text-[0.7rem] underline underline-offset-2 text-slate-700" data-file="/downloads/demo.zip" data-gif="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" data-price="9.99">View / download</a>
-          </div>
-        </div>
-
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Prompts & Checklists</p>
-          <h3 class="text-sm font-semibold mb-2">AI Prompt Library for AEC</h3>
-          <p class="text-xs text-slate-700 mb-3">A collection of prompt patterns and checklists for common BIM and design tasks, designed to be copied into your own AI tools.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Model cleanup and QA prompts</li>
-            <li>Script request templates</li>
-            <li>Design exploration and options studies</li>
-          </ul>
-          <div class="mt-auto flex items-center justify-between gap-2">
-            <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 text-white px-3 py-1 text-[0.7rem]">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Generated with Arqwell Assistant
-            </span>
-            <a href="#" class="js-view-download text-[0.7rem] underline underline-offset-2 text-slate-700" data-file="/downloads/demo.zip" data-gif="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" data-price="9.99">View / download</a>
+          <!-- Right: details -->
+          <div class="md:w-96 w-full bg-white p-6 flex flex-col justify-between">
+            <div>
+              <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Rhino + Revit</p>
+              <h3 class="text-lg font-semibold mb-2">Parametric Furniture Set</h3>
+              <p class="text-sm text-slate-700 mb-3">A small collection of beds, desks, and seating families created with AI assisted scripts, designed to be lightweight and easy to schedule in concept and schematic models.</p>
+              <ul class="text-xs text-slate-800 space-y-1 mb-4">
+                <li>Rhino source geometry + Revit family versions</li>
+                <li>Consistent naming and type parameters</li>
+                <li>Ready for room layout studies</li>
+              </ul>
+            </div>
+            <div class="mt-4 flex items-center justify-between gap-2">
+              <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 text-white px-3 py-1 text-[0.75rem]"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Generated with Arqwell Assistant</span>
+              <div class="flex items-center gap-2">
+                <button id="buyParametric" class="px-3 py-2 rounded-full bg-slate-900 text-white">Buy — $1</button>
+                <a id="downloadAfter" href="#" class="text-[0.85rem] underline text-slate-700 hidden">Download</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -277,153 +215,270 @@
       <!-- Articles & Research -->
       <div class="mb-4">
         <h3 class="text-sm font-semibold mb-2">Articles, blog posts, and research</h3>
-        <p class="text-xs text-slate-700 max-w-2xl mb-4">Writing and research from Arqwell and Blue Tape that explain the thinking behind our tools, including 5D BIM, AI assisted workflows, and future microcity design.</p>
+        <p class="text-xs text-slate-700 max-w-2xl mb-4">We currently host articles authored by other researchers and practitioners. Below are topics we are actively studying and reviewing: 5D BIM and cost‑aware modeling, AI‑assisted workflows for Rhino/Revit, CAD vectorization and raster→CAD pipelines, parametric and generative CAD research, and microcity design studies. Use the Research panel to explore peer‑reviewed papers and recommended reading.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6 text-sm">
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Blue Tape Blog</p>
-          <h4 class="text-sm font-semibold mb-2">Stories from the Drawing Board</h4>
-          <p class="text-xs text-slate-700 mb-3">A blog by Arqwell that shares behind the scenes process, early experiments, and reflections on architectural technology.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Field notes on AI in practice</li>
-            <li>Process sketches and diagrams</li>
-            <li>Links back to tools and templates</li>
-          </ul>
-          <a href="#" class="mt-auto inline-flex text-[0.75rem] underline underline-offset-2 text-slate-800">Visit the Blue Tape blog</a>
+        <div class="grid md:grid-cols-1 gap-6 text-sm">
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
+            <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Research Links</p>
+            <h4 class="text-sm font-semibold mb-2">External Papers We Reference</h4>
+            <p class="text-xs text-slate-700 mb-3">A curated list of research papers and articles that inform our tools – including BIM, automation, resilience, and learning.</p>
+            <ul class="text-xs text-slate-800 space-y-1 mb-4">
+              <li>Peer reviewed BIM and AI papers</li>
+              <li>Case studies from practice</li>
+              <li>Standards and best practice guides</li>
+            </ul>
+            <div class="mt-auto space-y-3">
+              <div id="researchPreviewContainer" style="border-radius:12px; overflow:hidden; border:1px solid #e5e7eb; display:none; align-items:center; justify-content:center; background:#fbfbfb;">
+                <iframe id="researchPreviewIframe" src="research_popup.html?embedded=1" title="Research bibliography preview" style="width:100%; height:320px; border:0; display:block; border-radius:12px;" sandbox="allow-scripts allow-same-origin"></iframe>
+              </div>
+              <div class="flex items-center justify-between">
+                <button id="openResearchBtn" class="inline-flex text-[0.85rem] underline underline-offset-2 text-slate-800">Open research popup</button>
+                <a href="mailto:imani@isa-arqwell.com" class="text-[0.8rem] text-slate-700 underline">Email corrections / suggestions</a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Arqwell Articles</p>
-          <h4 class="text-sm font-semibold mb-2">5D BIM and AI Enabled Design</h4>
-          <p class="text-xs text-slate-700 mb-3">Published writing from Arqwell exploring 5D BIM, data rich models, and how AI can support cost and schedule aware design decisions.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Overview of 5D BIM for architects</li>
-            <li>Examples of AI assisted cost studies</li>
-            <li>Notes on future practice and training</li>
-          </ul>
-          <a href="#" class="mt-auto inline-flex text-[0.75rem] underline underline-offset-2 text-slate-800">Read Arqwell articles</a>
-        </div>
-
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
-          <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wide">Research Links</p>
-          <h4 class="text-sm font-semibold mb-2">External Papers We Reference</h4>
-          <p class="text-xs text-slate-700 mb-3">A curated list of research papers and articles that inform our tools – including BIM, automation, resilience, and learning.</p>
-          <ul class="text-xs text-slate-800 space-y-1 mb-4">
-            <li>Peer reviewed BIM and AI papers</li>
-            <li>Case studies from practice</li>
-            <li>Standards and best practice guides</li>
-          </ul>
-          <a href="#" class="mt-auto inline-flex text-[0.75rem] underline underline-offset-2 text-slate-800">View research sources</a>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- SOFTWARE: PLUG-IN DOWNLOADS -->
-  <section id="software" class="py-16 bg-white border-t border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-[1.1fr,0.9fr] gap-10 items-start">
-      <div>
-        <h2 class="text-xl font-semibold mb-2">Arqwell Plug-in Downloads</h2>
-        <p class="text-sm text-slate-700 mb-3">Download and install the Arqwell Assistant plug-ins for Revit and Rhino to use the chat-based AI assistant directly inside your design software. Ask questions, generate scripts, and get Dynamo or Python code within your active model.</p>
-        <ul class="text-sm text-slate-800 space-y-1.5 mb-4">
-          <li><strong>Revit Assistant</strong> – Use natural language to create Dynamo scripts, automate model setup, and run AI-generated routines without leaving Revit.</li>
-          <li><strong>Rhino Assistant</strong> – Chat in Rhino to generate Python scripts, automate geometry, or prototype Grasshopper logic in seconds.</li>
-        </ul>
-        <div class="flex flex-wrap gap-3">
-          <a href="#" class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800">Download for Revit</a>
-          <a href="#" class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800">Download for Rhino</a>
-        </div>
-      </div>
-      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-sm text-slate-800 space-y-3">
-        <p class="font-semibold text-slate-600 text-sm mb-1">How it works</p>
-        <ul class="space-y-2 text-xs text-slate-700">
-          <li>1. Download and install the plug-in for your software.</li>
-          <li>2. Log in with your Arqwell account.</li>
-          <li>3. Open the chat sidebar and type your request in plain language.</li>
-          <li>4. The Arqwell Assistant generates a Dynamo or Python script, ready to run or test in your file.</li>
-        </ul>
-        <p class="text-xs text-slate-500">Future updates will add Grasshopper integration and shared cloud libraries for scripts generated by the community.</p>
-      </div>
-    </div>
-  </section>
+  <!-- SOFTWARE section removed per request -->
 
-  <!-- COMMUNITY -->
-  <section id="community" class="py-16 bg-white border-t border-slate-200">
+  <!-- CAPABILITIES -->
+  <section id="capabilities" class="py-16 bg-white border-t border-slate-200">
     <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-[1.1fr,0.9fr] gap-10 items-start">
       <div>
-        <h2 class="text-xl font-semibold mb-2">Community</h2>
-        <p class="text-sm text-slate-700 mb-3">The Arqwell community is a space for architects, designers, and BIM specialists to share scripts, ask questions, and explore how AI can support real projects.</p>
-        <p class="text-sm text-slate-700 mb-3">We host our main discussion forum on Reddit so conversations stay open, searchable, and easy to join. Your tools and training live here on the Arqwell site, and the discussion happens in an accessible public space.</p>
-        <ul class="text-sm text-slate-800 space-y-1.5 mb-4">
-          <li>Ask for help with Dynamo, Rhino Python, or Grasshopper logic</li>
-          <li>Share tools you built with the Arqwell Assistant</li>
-          <li>Request new features or training topics</li>
-          <li>See how others are using AI in their AEC workflows</li>
+        <h2 class="text-xl font-semibold mb-2">Capabilities</h2>
+        <p class="text-sm text-slate-700 mb-3">Arqwell provides tailored CAD & automation services for architects and design teams. We deliver Rhino Python scripts, Dynamo routines, Revit family workflows, and model preparation services that reduce repetitive work and accelerate design development.</p>
+        <h3 class="text-sm font-semibold mt-4 mb-2">CAD Services — Narrative</h3>
+        <p class="text-sm text-slate-700 mb-3">We collaborate with clients to understand design intent and produce reliable automation: parametric layout tools, massing test-fits, scheduling-ready families, and model-cleanup scripts. Each engagement starts with a short scoping conversation to identify deliverables, file formats, and integration points with your current BIM workflows.</p>
+        <h3 class="text-sm font-semibold mt-4 mb-2">General Cost</h3>
+        <p class="text-sm text-slate-700 mb-3">Typical engagements vary by scope. As a high-level guideline:</p>
+        <ul class="text-sm text-slate-800 space-y-1 mb-4">
+          <li><strong>Quick script / small task:</strong> $150–$500 — single script, small automation or dataset cleanup (1–3 days).</li>
+          <li><strong>Feature / tool:</strong> $500–$2,500 — multi-step tool, Revit family set, or Rhino workflow (1–3 weeks).</li>
+          <li><strong>Project integration / custom library:</strong> $2,500+ — larger integrations, scheduled deliveries, and documentation.</li>
         </ul>
-        <div class="flex flex-wrap gap-3">
-          <a href="https://www.reddit.com" target="_blank" class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800">Visit the Arqwell Forum (Demo)</a>
-          <button class="px-4 py-2.5 text-sm rounded-full border border-slate-300 hover:bg-white">View community guidelines</button>
+        <p class="text-sm text-slate-700 mb-3">Final cost depends on scope, testing requirements, and whether you need Revit/Rhino packaged families or additional QA. We provide a short proposal after our scoping call with a clearer timeline and deliverables.</p>
+
+        <h3 class="text-sm font-semibold mt-4 mb-2">CAD Vectorization</h3>
+        <p class="text-sm text-slate-700 mb-3">Based on the submitted RFQ form (<code>Arqwell RFQ Form — Submission.pdf</code>), we offer CAD vectorization services to convert scanned drawings, PDFs, or raster images into clean CAD geometry. Our standard rate is <strong>$300 per sheet</strong>. The process includes vector tracing, layer cleanup, attribute normalization, and a short QA pass to ensure dimensions align with the source.</p>
+        <ul class="text-sm text-slate-800 space-y-1 mb-3">
+          <li><strong>What we need:</strong> a clear scan or PDF of the sheet, notes on scale or a reference dimension, and any target file format (DWG, DXF, or Rhino).</li>
+          <li><strong>Deliverables:</strong> vectorized CAD file, layers organized, and a short summary of edits.</li>
+          <li><strong>Timing:</strong> typically 1–3 business days per sheet depending on complexity and queue.</li>
+        </ul>
+
+        <h3 class="text-sm font-semibold mt-4 mb-2">QA / QC Process</h3>
+        <p class="text-sm text-slate-700 mb-3">Arqwell follows a structured QA/QC workflow to ensure deliverables meet your standards. Our standard process includes:</p>
+        <ul class="text-sm text-slate-800 space-y-1 mb-4">
+          <li><strong>Initial review:</strong> assess submitted files for scale, legibility, and missing references.</li>
+          <li><strong>Vectorization & cleanup:</strong> convert raster/PDF to vector, standardize layers and naming conventions.</li>
+          <li><strong>Dimensional QA:</strong> check key dimensions against reference notes or a provided scale.</li>
+          <li><strong>Consistency pass:</strong> ensure families/types, parameter names, and layer conventions follow the agreed standard.</li>
+          <li><strong>Client review:</strong> deliver a review file and short QA report; incorporate one round of client feedback.</li>
+        </ul>
+        <p class="text-sm text-slate-700 mb-3">If you have a detailed QA/QC checklist, upload it with your submission or email it to <a href="mailto:imani@isa-arqwell.com" class="underline">imani@isa-arqwell.com</a>. We include one round of feedback revisions in the standard price; additional QA rounds can be quoted separately.</p>
+
+        <div class="flex flex-wrap gap-3 mt-4">
+          <button id="openServicesBtn" class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800">Get Services</button>
+          <a href="#contact" class="px-4 py-2.5 text-sm rounded-full border border-slate-300 hover:bg-white">Contact</a>
         </div>
       </div>
+
       <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-xs text-slate-800 space-y-3">
-        <p class="font-semibold text-slate-600 text-sm mb-1">Sample discussion topics</p>
+        <p class="font-semibold text-slate-600 text-sm mb-1">Service examples</p>
         <ul class="space-y-1.5">
-          <li><span class="font-semibold">Dynamo:</span> Best way to renumber doors by room sequence with AI help?</li>
-          <li><span class="font-semibold">Rhino:</span> Script to place I beams along a curved roof and label them?</li>
-          <li><span class="font-semibold">Grasshopper:</span> Ideas for a panel pattern driven by daylight or view analysis?</li>
-          <li><span class="font-semibold">Prompts:</span> Share your favorite prompt for cleaning a Revit model.</li>
+          <li><strong>Parametric layouts:</strong> automated room-by-room furniture placement and schedules.</li>
+          <li><strong>Scripted families:</strong> Revit families generated from Rhino geometry with consistent parameters.</li>
+          <li><strong>Model cleanup:</strong> remove duplicates, standardize naming, prepare models for downstream use.</li>
+          <li><strong>Custom tools:</strong> tile generators, façade panelizers, daylight-driven patterns.</li>
         </ul>
-        <p class="text-[0.7rem] text-slate-500">In a live version, this area can display recent threads from your subreddit using the Reddit API so visitors can see active conversations without leaving the site.</p>
+        <p class="text-[0.8rem] text-slate-700 mt-3">Questions? If you have files or examples you want us to edit, use the 'Get Services' form to request a call or upload a drawing. Files up to 10MB can be uploaded directly; larger files should be sent to <a href="mailto:imani@isa-arqwell.com" class="underline text-slate-800">imani@isa-arqwell.com</a>. Please email us for any further questions.</p>
       </div>
     </div>
   </section>
 
-  <!-- Dummy contact anchor for nav + modal trigger -->
-  <section id="contact" class="h-0 w-0 overflow-hidden" aria-hidden="true"></section>
-
-  <!-- TRAINING MODAL (Arqwell Sessions) -->
-  <div id="training-modal" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/40">
+  <!-- GET SERVICES MODAL -->
+  <div id="get-services-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
     <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-lg w-full mx-4 p-6 relative">
-      <button id="training-modal-close" class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-sm">✕</button>
-      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-500 mb-2">Arqwell Sessions</p>
-      <h2 class="text-lg font-semibold mb-3">Upcoming live training</h2>
-      <p class="text-sm text-slate-700 mb-4">Live sessions that walk through how to install and use Arqwell plug-ins in Rhino, Revit, and Dynamo. Join from anywhere and follow along with sample files.</p>
-      <div class="space-y-3 text-sm">
-        <div class="border border-slate-200 rounded-xl p-3 bg-slate-50">
-          <p class="text-xs font-semibold text-slate-500">Next session</p>
-          <p class="text-sm font-semibold">Arqwell Sessions: Dynamo + Revit Automation</p>
-          <p class="text-xs text-slate-700">Demo of the Dynamo chat workflow, renaming sheets, and creating a lighting layout script.</p>
-          <p class="text-xs text-slate-600 mt-1">Date: <span class="font-medium">TBD – add your preferred dates in the form below.</span></p>
-        </div>
-        <div class="border border-slate-200 rounded-xl p-3">
-          <p class="text-xs font-semibold text-slate-500">Coming soon</p>
-          <ul class="text-xs text-slate-800 space-y-1">
-            <li>Rhino Python: Parametric I beam layout</li>
-            <li>Grasshopper: Façade panel generator deep dive</li>
-            <li>Model QA: Building a checklist with AI prompts</li>
-          </ul>
-        </div>
-      </div>
-      <form class="mt-4 space-y-3 text-sm">
+      <button id="get-services-close" class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-sm">✕</button>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-500 mb-2">Request Services</p>
+      <h2 class="text-lg font-semibold mb-3">Get Services — CAD & Automation</h2>
+      <p class="text-sm text-slate-700 mb-3">Use this form to request a call or send CAD drawings for review. We'll receive your request by email and follow up to schedule a scoping conversation.</p>
+
+      <form id="get-services-form" action="https://formsubmit.co/imani@isa-arqwell.com" method="POST" enctype="multipart/form-data" class="space-y-3 text-sm">
+        <input type="hidden" name="_subject" value="New Services Request — Arqwell" />
+        <input type="hidden" name="_captcha" value="false" />
         <div>
-          <label class="block text-xs font-semibold mb-1">Email to receive session dates</label>
-          <input type="email" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="you@example.com" />
+          <label class="block text-xs font-semibold mb-1">Name</label>
+          <input name="name" type="text" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
         </div>
         <div>
-          <label class="block text-xs font-semibold mb-1">Which tools are you most interested in?</label>
-          <textarea class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" rows="2" placeholder="For example: Dynamo lighting tools, Rhino I beam layout, QA checklist..."></textarea>
+          <label class="block text-xs font-semibold mb-1">Email</label>
+          <input name="email" type="email" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
         </div>
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-2">
-          <label class="inline-flex items-center gap-2 text-xs text-slate-700">
-            <input type="checkbox" class="rounded border-slate-300" />
-            Notify me when new Arqwell Sessions are scheduled.
+        <div>
+          <label class="block text-xs font-semibold mb-1">Request type</label>
+          <select name="request_type" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm">
+            <option>Request a call</option>
+            <option>Request CAD drawings / edits</option>
+            <option>General inquiry</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold mb-1">Message / Brief</label>
+          <textarea name="message" rows="4" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="Describe your needs, deadlines, and any important notes..."></textarea>
+        </div>
+        <div>
+          <label class="inline-flex items-center gap-2 text-sm">
+            <input name="include_qa_qc" type="checkbox" value="yes" class="rounded border-slate-300" />
+            <span class="text-sm text-slate-700">Request QA / QC (include one review round)</span>
           </label>
-          <button type="submit" class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800">Submit</button>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold mb-1">Upload file (optional, max 10MB)</label>
+          <input id="services-file" name="attachment" type="file" class="w-full text-sm" />
+          <p class="text-[0.75rem] text-slate-500 mt-1">If your file is larger than 10MB, please email it to <a href="mailto:imani@isa-arqwell.com" class="underline">imani@isa-arqwell.com</a>.</p>
+        </div>
+
+        <div id="vectorization-block" class="space-y-2">
+          <label class="inline-flex items-center gap-2 text-sm">
+            <input id="vector-checkbox" name="request_vectorization" type="checkbox" value="yes" class="rounded border-slate-300" />
+            <span class="text-sm text-slate-700">Request CAD Vectorization ($300 per sheet)</span>
+          </label>
+          <div id="vector-controls" class="hidden items-center gap-3">
+            <label class="text-xs text-slate-600">Number of sheets</label>
+            <input id="vector-sheets" name="vector_sheets" type="number" min="1" value="1" class="w-24 border border-slate-300 rounded-lg px-2 py-1 text-sm" />
+            <div class="text-sm text-slate-700">Estimated cost: <span id="vector-estimate">$300</span></div>
+          </div>
+          <input type="hidden" name="vectorization_estimate" id="vectorization_estimate_input" value="" />
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <button type="submit" class="px-4 py-2.5 rounded-full bg-slate-900 text-white">Send Request</button>
+          <button type="button" id="get-services-cancel" class="px-4 py-2.5 rounded-full border border-slate-200">Cancel</button>
         </div>
       </form>
     </div>
   </div>
+
+    <!-- RESEARCH SOURCES MODAL (populated from provided bibliography) -->
+    <div id="research-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+      <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-4xl w-full mx-4 p-6 relative">
+        <button id="research-modal-close" class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-sm">✕</button>
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-500 mb-2">Research Sources</p>
+        <h2 class="text-lg font-semibold mb-3">External Papers & References</h2>
+        <p class="text-sm text-slate-700 mb-3">Curated list of peer‑reviewed papers informing our CAD, vectorization, and generative CAD research. Click links to open the Google Scholar entry or publisher page where available.</p>
+
+        <div class="grid md:grid-cols-4 gap-4">
+          <div class="md:col-span-1 bg-slate-50 rounded-lg p-3 flex items-center justify-center">
+            <div class="text-[0.9rem] text-slate-600">Research bibliography<br/><span class="text-xs text-slate-500">(click items to open)</span></div>
+          </div>
+          <div class="md:col-span-3">
+            <ol id="research-list" class="list-decimal list-inside text-sm text-slate-700 space-y-3">
+              <li><strong>Steininger, S., Zhao, J., & Fottner, J. (2025)</strong> — Enhancing computer‑aided design with deep learning frameworks. <a href="https://scholar.google.com/scholar?q=Enhancing+computer-aided+design+with+deep+learning+frameworks+Steininger" target="_blank" class="underline">Google Scholar</a></li>
+              <li><strong>Wang, H., et al. (2024)</strong> — VQ‑CAD: CAD model generation with vector‑quantized diffusion. <a href="https://scholar.google.com/scholar?q=VQ-CAD+vector-quantized+diffusion" target="_blank" class="underline">Google Scholar</a> · <a href="https://www.sciencedirect.com/science/article/pii/S0010448523001923" target="_blank" class="underline">Publisher</a></li>
+              <li><strong>Zhou, S., et al. (2024)</strong> — CADGen: CAD sequence construction with deep learning. <a href="https://scholar.google.com/scholar?q=CADGen+Computer-aided+design+sequence+construction" target="_blank" class="underline">Google Scholar</a></li>
+              <li><strong>Li, P., et al. (2025)</strong> — RECAD: Revisiting CAD Model Generation by Learning Raster Sketch. <a href="https://scholar.google.com/scholar?q=RECAD+Revisiting+CAD+Model+Generation" target="_blank" class="underline">Google Scholar</a> · <a href="https://aaai.org/library/aaai/" target="_blank" class="underline">AAAI</a></li>
+              <li><strong>Fan, R., et al. (2025)</strong> — History‑based parametric CAD sketch dataset. <a href="https://scholar.google.com/scholar?q=history+based+parametric+CAD+sketch+dataset" target="_blank" class="underline">Google Scholar</a></li>
+              <li><strong>Betsas, T., et al. (2024)</strong> — INCAD: 2D vector drawings creation using instance segmentation. <a href="https://scholar.google.com/scholar?q=INCAD+2D+vector+drawings+instance+segmentation" target="_blank" class="underline">Google Scholar</a> · <a href="https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/" target="_blank" class="underline">ISPRS</a></li>
+              <li><strong>Egiazarian, V., et al. (2020)</strong> — Deep Vectorization of Technical Drawings. <a href="https://scholar.google.com/scholar?q=Deep+Vectorization+of+Technical+Drawings" target="_blank" class="underline">Google Scholar</a> · <a href="https://link.springer.com/chapter/10.1007/978-3-030-58555-6_30" target="_blank" class="underline">ECCV / Springer</a></li>
+              <li><strong>Mafipour, M.S., et al. (2023)</strong> — Digitalization of 2D Bridge Drawings Using Deep Learning Models. <a href="https://scholar.google.com/scholar?q=Digitalization+of+2D+Bridge+Drawings+Deep+Learning" target="_blank" class="underline">Google Scholar</a></li>
+              <li><strong>Villena‑Toro, J., et al. (2022)</strong> — Automated and Customized CAD Drawings. <a href="https://scholar.google.com/scholar?q=Automated+and+Customized+CAD+Drawings+Villena-Toro" target="_blank" class="underline">Google Scholar</a> · <a href="https://asmedigitalcollection.asme.org/IDETC-CIE/proceedings" target="_blank" class="underline">ASME</a></li>
+              <li><strong>Daareyni, A., et al. (2025)</strong> — Generative AI meets CAD. <a href="https://scholar.google.com/scholar?q=Generative+AI+meets+CAD+Daareyni" target="_blank" class="underline">Google Scholar</a> · <a href="https://link.springer.com/journal/170" target="_blank" class="underline">Publisher</a></li>
+              <li><strong>Li, K.Y., et al. (2025)</strong> — Generative AI and CAD automation. <a href="https://scholar.google.com/scholar?q=Generative+AI+and+CAD+automation+Li" target="_blank" class="underline">Google Scholar</a></li>
+              <li><strong>Li, Q., et al. (2025)</strong> — Intelligent Generation and Reinforcement Learning for CAD. <a href="https://scholar.google.com/scholar?q=Intelligent+Generation+Reinforcement+Learning+CAD" target="_blank" class="underline">Google Scholar</a></li>
+              <li><strong>Lin, R., et al. (2025)</strong> — Survey: Deep Learning in 3D CAD Reconstruction. <a href="https://scholar.google.com/scholar?q=Survey+Deep+Learning+3D+CAD+Reconstruction+Lin" target="_blank" class="underline">Google Scholar</a> · <a href="https://www.mdpi.com/journal/applsci" target="_blank" class="underline">MDPI</a></li>
+              <li><strong>Peckham, O., et al. (2025)</strong> — Artificial Intelligence in Generative Design — A Structured Review. <a href="https://scholar.google.com/scholar?q=Artificial+Intelligence+in+Generative+Design+Peckham" target="_blank" class="underline">Google Scholar</a> · <a href="https://www.mdpi.com/journal/designs" target="_blank" class="underline">MDPI</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Dummy contact anchor for nav + modal trigger -->
+  <section id="contact" class="h-0 w-0 overflow-hidden" aria-hidden="true"></section>
+
+  <!-- Training modal removed per request -->
+
+  <!-- FEATURED Modal for contact/request -->
+  <div id="featured-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+    <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-lg w-full mx-4 p-6 relative">
+      <button id="featured-modal-close" class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-sm">✕</button>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-500 mb-2">Arqwell Script / Concept Study</p>
+      <h2 class="text-lg font-semibold mb-3">Arqwell — Custom Rhino Python Development</h2>
+      <p class="text-sm text-slate-700 mb-4">Arqwell provides custom Rhino Python development for architects, designers, and studios seeking speed, precision, and automation. From automated test-fits to diagram generators and microcity modeling tools, we build tailored scripts that turn your design logic into intelligent, repeatable workflows. If you'd like a custom code or commissioned concept study, reach out and we'll discuss scope and timelines.</p>
+      <div class="flex justify-end gap-3">
+        <a id="featured-contact" class="px-4 py-2.5 rounded-full bg-slate-900 text-white" href="#">Contact Us</a>
+        <button id="featured-modal-cancel" class="px-4 py-2.5 rounded-full border border-slate-200">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Hook up featured caption CTA to open modal and mailto
+    (function(){
+      const openBtn = document.getElementById('openFeaturedModal');
+      const modal = document.getElementById('featured-modal');
+      const closeBtn = document.getElementById('featured-modal-close');
+      const cancelBtn = document.getElementById('featured-modal-cancel');
+      const contact = document.getElementById('featured-contact');
+
+      function open(){ modal.classList.remove('hidden'); modal.classList.add('flex'); }
+      function close(){ modal.classList.add('hidden'); modal.classList.remove('flex'); }
+
+      openBtn && openBtn.addEventListener('click', open);
+      closeBtn && closeBtn.addEventListener('click', close);
+      cancelBtn && cancelBtn.addEventListener('click', close);
+      contact && contact.addEventListener('click', function(e){
+        e.preventDefault();
+        window.location.href = 'mailto:hello@arqwell.com?subject=Request%20for%20Custom%20Arqwell%20Script';
+      });
+    })();
+  </script>
+
+  <script>
+    // Research modal open/close
+    (function(){
+      const openBtn = document.getElementById('openResearchBtn');
+      const modal = document.getElementById('research-modal');
+      const closeBtn = document.getElementById('research-modal-close');
+      function open(){ if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); } }
+      function close(){ if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); } }
+      if (openBtn) openBtn.addEventListener('click', function(e){ e.preventDefault(); open(); });
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+      // open the full research app in a centered popup window
+      const previewBtn = document.getElementById('openResearchBtn');
+      if (previewBtn) {
+        previewBtn.addEventListener('click', function(e){
+          e.preventDefault();
+          // If modal is present, open that modal instead of a popup window
+          if (modal && !modal.classList.contains('hidden')) return;
+          const url = 'research_popup.html';
+          const w = 980, h = 760;
+          const left = Math.max(0, (screen.width - w) / 2);
+          const top = Math.max(0, (screen.height - h) / 2);
+          window.open(url, 'ArqwellResearch', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width='+w+',height='+h+',top='+top+',left='+left);
+        });
+      }
+    })();
+  </script>
+
+  <script>
+    // Buy button opens external payment page (Bluevine)
+    (function(){
+      const buyBtn = document.getElementById('buyParametric');
+      const paymentUrl = 'https://pay.bluevine.com/p/9fb44c2b7c964cb18018165d6f79c989';
+      if (buyBtn) {
+        buyBtn.textContent = 'Buy — $1';
+        buyBtn.addEventListener('click', function(e){
+          e.preventDefault();
+          window.open(paymentUrl, '_blank', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=900,height=700');
+        });
+      }
+    })();
+  </script>
 
   <!-- CONTACT POPUP MODAL (Google Form) -->
   <div id="contact-modal" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/40">
@@ -474,30 +529,7 @@
 
   <!-- JS: Training + Contact modals -->
   <script>
-    // Training modal
-    const trainingLink = document.getElementById('training-link');
-    const trainingModal = document.getElementById('training-modal');
-    const trainingClose = document.getElementById('training-modal-close');
-
-    if (trainingLink && trainingModal && trainingClose) {
-      trainingLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        trainingModal.classList.remove('hidden');
-        trainingModal.classList.add('flex');
-      });
-
-      trainingClose.addEventListener('click', function () {
-        trainingModal.classList.add('hidden');
-        trainingModal.classList.remove('flex');
-      });
-
-      trainingModal.addEventListener('click', function (e) {
-        if (e.target === trainingModal) {
-          trainingModal.classList.add('hidden');
-          trainingModal.classList.remove('flex');
-        }
-      });
-    }
+    // Training removed from navigation and UI
 
     // Contact modal
     const contactLink = document.querySelector('a[href="#contact"]');
@@ -669,6 +701,86 @@
   </script>
 
   <!-- Single Footer -->
+  <script>
+    (function(){
+      const openBtn = document.getElementById('openServicesBtn');
+      const modal = document.getElementById('get-services-modal');
+      const closeBtn = document.getElementById('get-services-close');
+      const cancelBtn = document.getElementById('get-services-cancel');
+      const form = document.getElementById('get-services-form');
+      const fileInput = document.getElementById('services-file');
+      const vectorCheckbox = document.getElementById('vector-checkbox');
+      const vectorControls = document.getElementById('vector-controls');
+      const vectorSheets = document.getElementById('vector-sheets');
+      const vectorEstimateSpan = document.getElementById('vector-estimate');
+      const vectorHidden = document.getElementById('vectorization_estimate_input');
+
+      function open() { if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); } }
+      function close() { if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); } }
+
+      if (openBtn) openBtn.addEventListener('click', function(e){ e.preventDefault(); open(); });
+      if (closeBtn) closeBtn.addEventListener('click', function(){ close(); });
+      if (cancelBtn) cancelBtn.addEventListener('click', function(){ close(); });
+      if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+
+      // Vectorization UI logic
+      function updateEstimate() {
+        const sheets = Math.max(0, parseInt(vectorSheets && vectorSheets.value) || 0);
+        const estimate = sheets * 300;
+        if (vectorEstimateSpan) vectorEstimateSpan.textContent = '$' + estimate.toLocaleString();
+        if (vectorHidden) vectorHidden.value = estimate;
+      }
+
+      if (vectorCheckbox) {
+        vectorCheckbox.addEventListener('change', function(){
+          if (!vectorControls) return;
+          if (vectorCheckbox.checked) {
+            vectorControls.classList.remove('hidden');
+          } else {
+            vectorControls.classList.add('hidden');
+          }
+          updateEstimate();
+        });
+      }
+
+      if (vectorSheets) {
+        vectorSheets.addEventListener('input', updateEstimate);
+      }
+
+      if (form) {
+        const messageField = form.querySelector('textarea[name="message"]');
+        form.addEventListener('submit', function(e){
+          const file = fileInput && fileInput.files && fileInput.files[0];
+          if (file && file.size > 10 * 1024 * 1024) {
+            e.preventDefault();
+            alert('The file you selected is larger than 10MB. Please email large files to imani@isa-arqwell.com instead.');
+            return;
+          }
+
+          // If vectorization selected, validate sheets and include estimate in submission
+          if (vectorCheckbox && vectorCheckbox.checked) {
+            const sheets = Math.max(0, parseInt(vectorSheets && vectorSheets.value) || 0);
+            if (sheets < 1) {
+              e.preventDefault();
+              alert('Please enter the number of sheets for CAD Vectorization (minimum 1).');
+              return;
+            }
+            const estimate = sheets * 300;
+            if (vectorHidden) vectorHidden.value = estimate;
+            // Append a brief summary to the message field so it appears in the email
+            if (messageField) {
+              const note = '\n\n[CAD Vectorization] Sheets: ' + sheets + ' — Estimated cost: $' + estimate.toLocaleString();
+              messageField.value = (messageField.value || '') + note;
+            }
+          }
+
+          // Let the form submit to the configured form endpoint (FormSubmit.co). Show a quick confirmation.
+          setTimeout(function(){ close(); alert('Request submitted. We will contact you soon.'); }, 500);
+        });
+      }
+    })();
+  </script>
+
   <footer class="py-8 border-t border-slate-200 bg-slate-900 text-white mt-8">
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
       <div class="flex flex-col items-center md:items-start">

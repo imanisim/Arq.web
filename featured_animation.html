@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Featured Animation — Python Codes for CAD</title>
+  <style>
+    :root{ --bg:#0b0b0b; --fg:#e8e8e8; --muted:#9aa0a6; --accent:#3b82f6; }
+    /* Ensure the iframe can size the internal content */
+    html,body{ height:100%; }
+    body{ margin:0; background:var(--bg); color:var(--fg); font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+
+    /* Centering and responsive sizing — use full available area inside iframe */
+    .stage{ height:100%; min-height:0; display:flex; align-items:center; justify-content:center; padding:18px; box-sizing:border-box; }
+    /* remove internal padding when showing final image so it can be full-bleed */
+    .stage.no-pad{ padding:0; }
+
+    /* Terminal / typing look */
+    .terminal{ width:100%; max-width:1100px; background:#0f1115; border:1px solid #1f232b; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden; max-height:100%; display:flex; flex-direction:column; }
+    .term-header{ height:44px; display:flex; align-items:center; gap:8px; padding:0 14px; color:var(--muted); background:#141824; font-size:14px; flex:0 0 auto; }
+    .dot{ width:10px; height:10px; border-radius:50%; display:inline-block; }
+    .dot.red{background:#ff5f57;} .dot.yellow{background:#febc2e;} .dot.green{background:#28c840;}
+    .code-wrap{ padding:12px 14px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px; line-height:1.45; color:var(--fg); white-space:pre-wrap; word-break:break-word; overflow:auto; flex:1 1 auto; }
+    .cursor{ display:inline-block; width:.5ch; margin-left:2px; color:#fff; animation:blink .8s step-end infinite; }
+    @keyframes blink{ 50%{opacity:0;} }
+
+    /* Image stage */
+    .image-stage{ display:none; align-items:center; justify-content:center; flex-direction:column; gap:12px; width:100%; height:100%; box-sizing:border-box; }
+    .image-stage.visible{ display:flex; }
+    /* Make the final image fill the iframe area and cover (may crop) */
+    #finalImg{ width:100%; height:100%; border-radius:0; display:block; object-fit:cover; background:#000; }
+
+    /* Caption that opens modal */
+    .caption{ margin-top:12px; color:var(--muted); cursor:pointer; user-select:none; text-align:center; }
+    .caption:hover{ color:var(--fg); text-decoration:underline; }
+
+    /* Modal */
+    .modal-backdrop{ position:fixed; inset:0; background:rgba(2,6,23,0.7); display:none; align-items:center; justify-content:center; z-index:1000; }
+    .modal-backdrop.open{ display:flex; }
+    .modal{ background:#0f1724; color:var(--fg); width:min(760px,94vw); padding:22px; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,.6); }
+    .modal h2{ margin:0 0 8px 0; font-size:18px; }
+    .modal p{ margin:0 0 12px 0; color:var(--muted); }
+    .modal .actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:12px; }
+    .btn{ background:var(--accent); color:#fff; padding:8px 12px; border-radius:8px; text-decoration:none; }
+    .btn.secondary{ background:transparent; border:1px solid rgba(255,255,255,.06); color:var(--fg); }
+  </style>
+</head>
+<body>
+
+  <div class="stage">
+    <!-- Typing terminal shown first -->
+    <div id="terminal" class="terminal" aria-hidden="false">
+      <div class="term-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span>featured_animation</span></div>
+      <div id="codeWrap" class="code-wrap"><pre id="code"></pre><span class="cursor">|</span></div>
+    </div>
+
+    <!-- Image + caption: will show after typing completes -->
+    <div id="imageStage" class="image-stage">
+      <img id="finalImg" src="" alt="Featured — Arqwell script / concept study" />
+    </div>
+  </div>
+
+  <!-- Modal for description / contact -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h2>Arqwell Script / Concept Study</h2>
+      <p>Arqwell scripts are bespoke Python workflows and concept study prototypes that automate drafting, generate test fits, and extract model data for Revit, Rhino, and Grasshopper. We build scripts to accelerate repetitive CAD tasks, produce concept studies, and integrate outputs into your documentation workflows.</p>
+      <p style="color:var(--muted); font-size:13px;">Contact us to discuss a custom Arqwell script or commissioned concept study.</p>
+      <div class="actions">
+        <a id="contactBtn" class="btn" href="#">Contact Us</a>
+        <button id="closeModal" class="btn secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // -------- CONFIGURE IMAGE HERE --------
+    // Image from local `img` folder. Change to `img/image (6).png` if you prefer that file.
+    const imageSrc = "img/image (5).png"; // relative path inside the repo
+
+    // typing content (sample)
+    const codeToType = `<!-- Featured animation (sample) -->\n<div class="featured">\n  <h3>Python Codes for CAD</h3>\n  <p>Arqwell scripts to help with Revit / Rhino automation.</p>\n</div>`;
+
+    const codeEl = document.getElementById('code');
+    const codeWrap = document.getElementById('codeWrap');
+    const speed = 12; // ms per char
+    let i = 0;
+
+    function typeNext(){
+      if(i < codeToType.length){
+        codeEl.textContent += codeToType[i++];
+        codeWrap.parentElement.scrollTop = codeWrap.parentElement.scrollHeight;
+        setTimeout(typeNext, speed);
+      } else {
+        // after typing, transition to image stage
+        setTimeout(showImageStage, 600);
+      }
+    }
+
+    function showImageStage(){
+      const term = document.getElementById('terminal');
+      term.style.display = 'none';
+      const imgStage = document.getElementById('imageStage');
+      const img = document.getElementById('finalImg');
+      // set image src if provided, else keep empty and show placeholder text
+      if(imageSrc && imageSrc !== 'PUT_YOUR_IMAGE_URL_HERE'){
+        img.src = imageSrc;
+      } else {
+        // show a subtle placeholder grey box if no image provided
+        img.style.width = '100%';
+        img.style.maxWidth = '980px';
+        img.style.height = '260px';
+        img.style.background = 'linear-gradient(90deg,#e6eaf0,#f3f6fa)';
+        img.style.display = 'block';
+      }
+      imgStage.classList.add('visible');
+      // remove internal padding so the image fills the iframe fully
+      const stage = document.querySelector('.stage');
+      stage && stage.classList.add('no-pad');
+    }
+
+    // Note: caption and modal are handled by the parent page (index). This iframe only shows animation + final image.
+
+    // start typing when loaded
+    window.addEventListener('DOMContentLoaded', ()=>{
+      typeNext();
+    });
+  </script>
+</body>
+</html>
