@@ -40,7 +40,7 @@
         <a href="#about" class="hover:text-slate-500">About</a>
         <a href="#resources" class="hover:text-slate-500">Resources</a>
         <a href="#capabilities" class="hover:text-slate-500">Capabilities</a>
-        <a href="#contact" class="hover:text-slate-500">Contact</a>
+        <a href="https://form.jotform.com/253264124810045" class="hover:text-slate-500">Contact</a>
       </nav>
     </div>
   </header>
@@ -48,7 +48,7 @@
   <!-- HERO -->
   <section id="home" class="py-16 md:py-24 relative overflow-hidden">
     <!-- Hero Background Image/GIF/Video -->
-    <div id="hero-img" class="absolute inset-0 -z-10
+    <div href="C:\Users\Imani\OneDrive\Documents\GitHub\Arq.web\img\image (6).png" id="hero-img" class="absolute inset-0 -z-10
      object-cover" style="background-size: cover; background-position: center;">
       <!-- Background will be set dynamically or via inline CSS -->
     </div>
@@ -282,7 +282,7 @@
 
         <div class="flex flex-wrap gap-3 mt-4">
           <button id="openServicesBtn" class="px-4 py-2.5 text-sm rounded-full bg-slate-900 text-white hover:bg-slate-800">Get Services</button>
-          <a href="#contact" class="px-4 py-2.5 text-sm rounded-full border border-slate-300 hover:bg-white">Contact</a>
+          <a href="https://form.jotform.com/253264124810045" class="px-4 py-2.5 text-sm rounded-full border border-slate-300 hover:bg-white">Contact</a>
         </div>
       </div>
 
@@ -336,11 +336,26 @@
             <span class="text-sm text-slate-700">Request QA / QC (include one review round)</span>
           </label>
         </div>
-        <div>
-          <label class="block text-xs font-semibold mb-1">Upload file (optional, max 10MB)</label>
-          <input id="services-file" name="attachment" type="file" class="w-full text-sm" />
-          <p class="text-[0.75rem] text-slate-500 mt-1">If your file is larger than 10MB, please email it to <a href="mailto:imani@isa-arqwell.com" class="underline">imani@isa-arqwell.com</a>.</p>
-        </div>
+       <div>
+  <label class="block text-xs font-semibold mb-1">
+    Upload drawings (batch uploads)
+  </label>
+
+  <a
+    href="https://forms.gle/dzjhbUqVMmD4WPAw8"
+    target="_blank"
+    rel="noopener"
+    class="inline-flex items-center px-4 py-2 rounded bg-black text-white text-sm"
+  >
+    Upload files to Arqwell Drive
+  </a>
+
+  <p class="text-[0.75rem] text-slate-500 mt-2">
+    Please upload all drawings as one ZIP (preferred) or a batch of files.
+    If you have trouble, email <a href="mailto:imani@isa-arqwell.com" class="underline">imani@isa-arqwell.com</a>.
+  </p>
+</div>
+
 
         <div id="vectorization-block" class="space-y-2">
           <label class="inline-flex items-center gap-2 text-sm">
@@ -409,7 +424,7 @@
       <h2 class="text-lg font-semibold mb-3">Arqwell — Custom Rhino Python Development</h2>
       <p class="text-sm text-slate-700 mb-4">Arqwell provides custom Rhino Python development for architects, designers, and studios seeking speed, precision, and automation. From automated test-fits to diagram generators and microcity modeling tools, we build tailored scripts that turn your design logic into intelligent, repeatable workflows. If you'd like a custom code or commissioned concept study, reach out and we'll discuss scope and timelines.</p>
       <div class="flex justify-end gap-3">
-        <a id="featured-contact" class="px-4 py-2.5 rounded-full bg-slate-900 text-white" href="#">Contact Us</a>
+        <a id="featured-contact" class="px-4 py-2.5 rounded-full bg-slate-900 text-white" href="https://form.jotform.com/253264124810045">Contact Us</a>
         <button id="featured-modal-cancel" class="px-4 py-2.5 rounded-full border border-slate-200">Close</button>
       </div>
     </div>
@@ -432,7 +447,7 @@
       cancelBtn && cancelBtn.addEventListener('click', close);
       contact && contact.addEventListener('click', function(e){
         e.preventDefault();
-        window.location.href = 'mailto:hello@arqwell.com?subject=Request%20for%20Custom%20Arqwell%20Script';
+        window.location.href = 'mailto:imani@isa-arqwell.com?subject=Request%20for%20Custom%20Arqwell%20Script';
       });
     })();
   </script>
@@ -486,7 +501,7 @@
       <button id="contact-modal-close" class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-sm">✕</button>
       <h2 class="text-lg font-semibold mb-3">Contact Arqwell</h2>
       <p class="text-sm text-slate-700 mb-4">Please fill out the short form below to connect with us. You will receive an automated confirmation letting you know that we’ve received your message and will respond soon.</p>
-      <iframe src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true" title="Arqwell Contact Form" class="w-full h-96 border-0 rounded-xl"></iframe>
+      <iframe src="https://form.jotform.com/253264124810045" title="Arqwell Contact Form" class="w-full h-96 border-0 rounded-xl"></iframe>
     </div>
   </div>
 
@@ -532,7 +547,7 @@
     // Training removed from navigation and UI
 
     // Contact modal
-    const contactLink = document.querySelector('a[href="#contact"]');
+    const contactLink = document.querySelector('a[href="https://form.jotform.com/253264124810045"]');
     const contactModal = document.getElementById('contact-modal');
     const contactClose = document.getElementById('contact-modal-close');
 
@@ -675,7 +690,7 @@
 
     // Purchase code button: open email client to Arqwell
     if (purchaseCodeBtn) purchaseCodeBtn.addEventListener('click', function () {
-      window.location.href = 'mailto:hello@arqwell.com?subject=Purchase License Code for ' + (productTitle.textContent || 'Product');
+      window.location.href = 'mailto:imani@isa-arqwell.com subject=Purchase License Code for ' + (productTitle.textContent || 'Product');
     });
 
     // Activate license code
@@ -785,7 +800,7 @@
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
       <div class="flex flex-col items-center md:items-start">
         <p class="text-slate-300">© 2025 Arqwell. Built for architects, by architects.</p>
-        <a href="https://docs.google.com/forms/d/e/YOUR_GOOGLE_CHATBOT_FORM_ID/viewform?embedded=true" target="_blank" class="text-emerald-400 hover:text-emerald-300 text-xs mt-1">Chat with the Arqwell Bot</a>
+        <a href="https://form.jotform.com/253264124810045" target="_blank" class="text-emerald-400 hover:text-emerald-300 text-xs mt-1">Contact Arqwell</a>
       </div>
       <div class="flex gap-4 text-slate-300">
         <a href="#" class="hover:text-white">GitHub</a>
